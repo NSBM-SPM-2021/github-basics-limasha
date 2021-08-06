@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+    
+<div class="container">
+    <div>
+       <h1 class="title" style="font-size: 2.5em;font-family:Arial;text-align:left;color:dodgerblue">Admin</h1>
+    </div>
+
+    <div style="border:1px solid #357ebd;margin-top:4%;width:98%;height:50%;margin-bottom:0%;background-color:white">
+        <div class="col-sm-6">
+            @Html.Label("Item ID", "Item ID", new { @class = "control-label col-sm-4", @Style = "font-weight:bold;text-align:left" })
+            <div class="col-sm-7">
+                @Html.TextBox("Item ID", "", new { @class = "form-control", @id = "Item ID", style = "width:100%" })
+            </div>
+        </div>
+    </div>
+</div>
