@@ -8,10 +8,10 @@ namespace CafeProject.Models
 {
     public class ItemList
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string ItemName { get; set; }
         public string Description { get; set; }
-        public float UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
         public DateTime AddedDate { get; set; }
     }
 }
