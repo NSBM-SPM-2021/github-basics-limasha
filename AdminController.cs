@@ -10,26 +10,22 @@ namespace CafeProject.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+        // GET: Item
+        // 1. *********** Display All Item List in Index Page ***********
         public ActionResult Index()
         {
-            return View();
+            ViewBag.ItemList = "Item List Page";
+            ItemDbHandler IHandler = new ItemDbHandler();
+            ModelState.Clear();
+            return View(IHandler.GetItemList());
         }
-
+        
         public ActionResult Admin()
         {
             return View();
         }
 
-        // 1. Display All Item List
-        public ActionResult IndexA()
-        {
-            ViewBag.ItemList = "Item List Page";
-            ItemDbHandler itemDbHandler = new ItemDbHandler();
-            ModelState.Clear();
-            return View(itemDbHandler.GetItemList());
-        }
-
-        // 2. Add New Item 
+        // 2. *********** Add New Item ***********
         [HttpGet]
         public ActionResult Create()
         {
@@ -38,46 +34,48 @@ namespace CafeProject.Controllers
         [HttpPost]
         public ActionResult Create(ItemList iList)
         {
-
-            //if (ModelState.IsValid)
+            // try
             //{
-                ItemDbHandler itemDbHandler = new ItemDbHandler();
-                if (itemDbHandler.InsertItem(iList))
+            if (ModelState.IsValid)
+            {
+                ItemDbHandler ItemHandler = new ItemDbHandler();
+                if (ItemHandler.InsertItem(iList))
                 {
                     ViewBag.Message = "Item Added Successfully";
                     ModelState.Clear();
                 }
-            //}
+            }
             return View();
+            /* }
+             catch { return View();  }*/
         }
 
-        // 3. Update Item Details
+        // 3. *********** Update Item Details ***********
         [HttpGet]
-        public ActionResult Edit(string ID)
+        public ActionResult Edit(int id)
         {
-            ItemDbHandler itemDbHandler = new ItemDbHandler();
-            return View(itemDbHandler.GetItemList().Find(itemlist => itemlist.ID == ID));
+            ItemDbHandler ItemHandler = new ItemDbHandler();
+            return View(ItemHandler.GetItemList().Find(itemmodel => itemmodel.ID == id));
         }
-
         [HttpPost]
-        public ActionResult Edit(string ID, ItemList iList)
+        public ActionResult Edit(ItemList iList)
         {
             try
             {
-                ItemDbHandler itemDbHandler = new ItemDbHandler();
-                itemDbHandler.UpdateItem(iList);
+                ItemDbHandler ItemHandler = new ItemDbHandler();
+                ItemHandler.UpdateItem(iList);
                 return RedirectToAction("Index");
             }
             catch { return View(); }
         }
 
-        // 4. Delete Item Details
-        public ActionResult Delete(string ID)
+        // 4. *********** Delete Item Details ***********
+        public ActionResult Delete(int id)
         {
             try
             {
-                ItemDbHandler itemDbHandler = new ItemDbHandler();
-                if (itemDbHandler.DeleteItem(ID))
+                ItemDbHandler ItemHandler = new ItemDbHandler();
+                if (ItemHandler.DeleteItem(id))
                 {
                     ViewBag.AlertMsg = "Item Deleted Successfully";
                 }
@@ -86,11 +84,10 @@ namespace CafeProject.Controllers
             catch { return View(); }
         }
 
-        // 5. Disply Item according to the id
-        public ActionResult Details(string ID)
+        public ActionResult Details(int id)
         {
-            ItemDbHandler itemDbHandler = new ItemDbHandler();
-            return View(itemDbHandler.GetItemList().Find(itemlist => itemlist.ID == ID));
+            ItemDbHandler ItemHandler = new ItemDbHandler();
+            return View(ItemHandler.GetItemList().Find(itemmodel => itemmodel.ID == id));
         }
     }
 }

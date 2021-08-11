@@ -17,11 +17,11 @@ namespace CafeProject.Models
             con = new SqlConnection(connectionstring);
         }
 
-        // 1. Insert Item 
+        // 1. ********** Insert Item **********
         public bool InsertItem(ItemList iList)
         {
             ConnectToDb();
-            string query = "INSERT INTO Item VALUES('" + iList.ID + "','" + iList.ItemName + "','" + iList.Description + "'," + iList.UnitPrice + ",'" + iList.AddedDate + "')";
+            string query = "INSERT INTO Item VALUES('" + iList.ItemID + "','" + iList.ItemName + "','" + iList.Description+ "'," + iList.UnitPrice+ ",'" + iList.AddedDate+ "')";
             SqlCommand cmd = new SqlCommand(query, con);
             con.Open();
             int i = cmd.ExecuteNonQuery();
@@ -33,8 +33,7 @@ namespace CafeProject.Models
                 return false;
         }
 
-
-        // 2. Get All Item List
+        // 2. ********** Get All Item List **********
         public List<ItemList> GetItemList()
         {
             ConnectToDb();
@@ -53,7 +52,8 @@ namespace CafeProject.Models
             {
                 iList.Add(new ItemList
                 {
-                    ID = Convert.ToString(dr["ID"]),
+                    ID = Convert.ToInt32(dr["ID"]),
+                    ItemID = Convert.ToString(dr["Item ID"]),
                     ItemName = Convert.ToString(dr["Item Name"]),
                     Description = Convert.ToString(dr["Description"]),
                     UnitPrice = Convert.ToDecimal(dr["Unit Price"]),
@@ -63,11 +63,11 @@ namespace CafeProject.Models
             return iList;
         }
 
-        // 3. Update Item Details 
+        // 3. ********** Update Item Details **********
         public bool UpdateItem(ItemList iList)
         {
             ConnectToDb();
-            string query = "UPDATE Item SET ID = '" + iList.ID + "',Item Name = '" + iList.ItemName + "', Description = '" + iList.Description + "', Unit Price = " + iList.UnitPrice + ", Added Date = '" + iList.AddedDate + "' WHERE ID = " + iList.ID;
+            string query = "UPDATE Item SET ID = "+iList.ID+", Item ID = '" + iList.ItemID + "', Item Name = '" + iList.ItemName + "', Description = '" + iList.Description + "', Unit Price = " + iList.UnitPrice + ", Added Date = '" + iList.AddedDate + "' WHERE ID = " + iList.ID;
             SqlCommand cmd = new SqlCommand(query, con);
             con.Open();
             int i = cmd.ExecuteNonQuery();
@@ -79,11 +79,11 @@ namespace CafeProject.Models
                 return false;
         }
 
-        // 4. Delete Item 
-        public bool DeleteItem(string ID)
+        // 4. ********** Delete Item **********
+        public bool DeleteItem(int id)
         {
             ConnectToDb();
-            string query = "DELETE FROM Item WHERE ID = " + ID;
+            string query = "DELETE FROM Item WHERE ID = " + id;
             SqlCommand cmd = new SqlCommand(query, con);
             con.Open();
             int i = cmd.ExecuteNonQuery();
