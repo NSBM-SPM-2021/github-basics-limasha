@@ -1,55 +1,59 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-    //Layout = "~/Views/Shared/Default_Layout.cshtml";
-}
+﻿@model IEnumerable<CafeProject.Models.ItemList>
 
-<script type="text/javascript">
-
-    function page1()
-    {
-        window.location('@Url.Action("PointofSale","PointofSale")');
-    }
-   
-    function page2()
-    {
-        window.location('@Url.Action("Index","Admin")');
-    }
-
-    function page3()
-    {
-        window.location('@Url.Action("Report","Report")');
-    }
-
-</script>
-
-@*<link rel="stylesheet" href="~/Content/Style.css" />*@
-
-<div class="jumbotron text-center">
-    <h1>Cafe SNL</h1>
-    <p class="lead">Food Kingdom</p>
-</div>
-
-<div class="center-block row" style="padding:3% 3% 3% 5%;font-size:1.5em;font-weight:bold;">
-
-    <div class="card card-hover" onclick="page1();">
-        <div class="col-md-3 text-center text-white" style="border: 2px solid gray;border-radius:5%; padding: 3% 3% 3% 3%; margin-right:12%;background-color:lightgrey;">
-            <img src="~/Images/small_business_96px.png" alt="point of sales" /><br />
-            <p>Point of Sale</p>
-        </div>
+<div style="font-family:Verdana;">
+    <div>
+        <h1 class="title" style="font-size: 2.5em;font-family:Arial;text-align:left;color:dodgerblue">Admin</h1>
+        <hr />
+    </div>
+    <div style="margin-top:3%;">
+        <b>@Html.ActionLink("Create New", "Create")</b>
     </div>
 
-    <div class="card card-hover" onclick="page2();">
-        <div class="col-md-3 text-center" style="border: 2px solid gray;border-radius:5%;padding:3% 3% 3% 3%;margin-right:12%;background-color:lightgrey;">
-            <img src="~/Images/installing_updates_96px.png" alt="admin" /><br />
-            <p>Admin</p>
-        </div>
-    </div>
+    <table class="table table-hover" style="margin-top:3%;">
+        <tr style="background-color:black;color:white;">
+            <th>
+                @Html.DisplayName("Item ID")
+            </th>
+            <th>
+                @Html.DisplayName("Item Name")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayName("Unit Price")
+            </th>
+            <th>
+                @Html.DisplayName("Added Date")
+            </th>
+            <th></th>
+        </tr>
 
-    <div class="card card-hover" onclick="page3();">
-        <div class="col-md-3 text-center" style="border: 2px solid gray;border-radius:5%;padding:3% 3% 3% 3%;background-color:lightgrey;">
-            <img src="~/Images/combo_chart_100px.png" alt="reports" /><br />
-            <p>Reports</p>
-        </div>
-    </div>
+        @foreach (var item in Model)
+        {
+            <tr class="bg-success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
 
+    </table>
 </div>
