@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CafeProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,16 @@ namespace CafeProject.Controllers
 
         public ActionResult PointofSale()
         {
+            SendData();
             return View();
+        }
+
+        public JsonResult SendData()
+        {
+            ItemDbHandler db = new ItemDbHandler();
+            List<ItemList> list = db.GetItemList();
+            //var result = db.GetItemList();
+            return Json(new { data = list }, JsonRequestBehavior.AllowGet);
         }
     }
 }

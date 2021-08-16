@@ -1,52 +1,59 @@
 ﻿@model CafeProject.Models.ItemList
 
-<div>
-    <h4>ItemList</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemID)
-        </dt>
+<div style="border:1px solid #357ebd;font-family:Verdana;padding-left:3%;margin-top:4%;margin-bottom:4%;width:40%;height:50%;background-color:azure;">
+        <div>
+            <h1 class="title" style="font-size: 2.5em;font-family:Arial;text-align:left;color:dodgerblue;margin-top:7%">Item Details</h1>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ItemID)
-        </dd>
+        <dl class="dl-horizontal" style="padding-top:10%;">
+           
+            <dt style="text-align:left;margin-bottom:6%;">
+                @Html.DisplayName("Item ID")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ItemID)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ItemName)
-        </dd>
+            <dt style="text-align:left;margin-bottom:6%;">
+                @Html.DisplayName("Item Name")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ItemName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt style="text-align:left;margin-bottom:6%;">
+                @Html.DisplayName("Description")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
+            <dt style="text-align:left;margin-bottom:6%;">
+                @Html.DisplayName("Unit Price")
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AddedDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UnitPrice)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AddedDate)
-        </dd>
+            <dt style="text-align:left;margin-bottom:6%;">
+                @Html.DisplayName("Added Date")
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.AddedDate)
+            </dd>
+
+        </dl>
+  
 </div>
+        
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    <b>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </b>
 </p>
