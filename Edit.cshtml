@@ -5,12 +5,12 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class="form-horizontal col-md-6">
         <div>
             <h1 class="title" style="font-size: 2.5em;font-family:Arial;text-align:left;color:dodgerblue">Update Item List</h1>
         </div>
 
-        <div style="border:1px solid #357ebd;font-family:Verdana;margin-top:2%;width:45%;height:50%;background-color:azure;">
+        <div style="border:1px solid #357ebd;font-family:Verdana;margin-top:2%;margin-bottom:6%;width:95%;height:95%;background-color:azure;">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ID)
@@ -93,4 +93,8 @@
         </div>
     </div>
 
+    <div class="col-md-6" style="margin-top:6%;margin-right:2%;width:80px;height:20px;">
+        <img src="~/Images/fresh-juice-home-made.jpg" alt="image1" style="width:350px;height:260px;margin-bottom:4%;" />
+        <img src="~/Images/maxresdefault.jpg" alt="image2" style="width:350px;height:260px;margin-left:350px;" />
+    </div>
 }
