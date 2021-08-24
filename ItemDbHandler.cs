@@ -17,7 +17,7 @@ namespace CafeProject.Models
             con = new SqlConnection(connectionstring);
         }
 
-        // 1. ********** Insert Item **********
+        // 1. Insert Item 
         public bool InsertItem(ItemList iList)
         {
             ConnectToDb();
@@ -33,7 +33,7 @@ namespace CafeProject.Models
                 return false;
         }
 
-        // 2. ********** Get All Item List **********
+        // 2. Get All Item List 
         public List<ItemList> GetItemList()
         {
             ConnectToDb();
@@ -67,7 +67,7 @@ namespace CafeProject.Models
         public bool UpdateItem(ItemList iList)
         {
             ConnectToDb();
-            string query = "UPDATE Item SET ID = "+iList.ID+", Item ID = '" + iList.ItemID + "', Item Name = '" + iList.ItemName + "', Description = '" + iList.Description + "', Unit Price = " + iList.UnitPrice + ", Added Date = '" + iList.AddedDate + "' WHERE ID = " + iList.ID;
+            string query = "UPDATE Item SET Item ID = '" + iList.ItemID + "', Item Name = '" + iList.ItemName + "', Description = '" + iList.Description + "', Unit Price = " + iList.UnitPrice + ", Added Date = '" + iList.AddedDate + "' WHERE ID = " + iList.ID;
             SqlCommand cmd = new SqlCommand(query, con);
             con.Open();
             int i = cmd.ExecuteNonQuery();
